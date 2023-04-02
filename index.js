@@ -28,6 +28,20 @@ app.use("/api/user", userRouter);
 app.get("/", (req, res) => {
   res.send("Hello");
 });
+
+// error handling
+app.use((error, req, res, next) => {
+  const errorStatus = error.status || 500;
+  const errorMessage = error.message || "Something went wrong";
+
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: error.stack,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`The applicaton is running at port http://localhost:${PORT}`);
 });
