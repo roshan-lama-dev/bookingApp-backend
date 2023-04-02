@@ -15,13 +15,13 @@ const PORT = 7000;
 dbConnection();
 
 // middlewares
-
+app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
 // router middlewares
 app.use("/api/auth", authRoute);
-app.use("/api/hotels", hotelsRoute);
+app.use("/api/hotel", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/user", userRouter);
 
