@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { config } from "dotenv";
 import { dbConnection } from "./src/config/dbConfig.js";
-
+import cookieparser from "cookie-parser";
 import authRoute from "./src/routers/authRouter.js";
 import hotelsRoute from "./src/routers/hotelsRouter.js";
 import roomsRoute from "./src/routers/roomsRotuer.js";
@@ -18,7 +18,7 @@ dbConnection();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-
+app.use(cookieparser());
 // router middlewares
 app.use("/api/auth", authRoute);
 app.use("/api/hotel", hotelsRoute);
